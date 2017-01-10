@@ -1,0 +1,2 @@
+# Zzznake
+Random funny game
