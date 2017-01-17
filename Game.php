@@ -4,6 +4,7 @@ class Game {
 	private $name;
 	private $players;
 	private $nextId;
+	private $running;
 
 	public function __construct($id, $name) {
 		$this->id = $id;
@@ -44,12 +45,14 @@ class Player implements jsonSerializable {
 	private $id;
 	private $name;
 	private $positions;
+	private $ready;
 	// private $x;
 	// private $y;
 
 	public function __construct($id, $name) {
 		$this->id = $id;
 		$this->name = $name;
+		$this->ready = false;
 
 		// Generating random starting position
 		$x = rand(0, 1000);
@@ -58,6 +61,10 @@ class Player implements jsonSerializable {
 		// History of movements
 		$this->positions = array();
 		$this->newPoint($x, $y);
+	}
+
+	public function ready() {
+		$this->ready = true;
 	}
 
 	// Adds a new point in movement history

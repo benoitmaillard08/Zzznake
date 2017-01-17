@@ -22,7 +22,7 @@ if (isset($_GET["id"], $_GET["type"], $_GET["x"], $_GET["y"])) {
 		$player->newPoint($posX, $posY);
 	}
 
-	$data = $session->getLastPositions();
+	$data = $session->update();
 
 	echo(json_encode($data));
 
