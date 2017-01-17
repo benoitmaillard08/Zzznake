@@ -10,6 +10,7 @@ class Game {
 		$this->id = $id;
 		$this->name = $name;
 		$this->nextId = 0;
+		$this->running = false;
 
 		$this->players = array();
 	}
@@ -25,23 +26,45 @@ class Game {
 		return $player;
 	}
 
-	// Returns 2-dimensional array containing last positions of players
-	public function getLastPositions() {
-		$last = array();
+	// Returns data about session and player positions
+	public function update() {
+		// array containing players data
+		$players = array();
+
+		$readyFlag = true;
 
 		foreach ($this->players as $id => $p) {
-			$last[$id] = array($p->getX(), $p->getY());
+			array_push($players, $p->getData());
+
+			if (!$p->isReady()) {
+				$readyFlag = false;
+			}
 		}
 
-		return $last;
+		// if all the players are ready, the game starts running
+		if ($readyFlag && count($this->players) > 0) {
+			$this->running = true;
+		}
+
+		$sessionData = array(
+			"name" => $this->name,
+			"running" => $this->running,
+			"players" => $players,
+		);
+
+		return $sessionData;
 	}
 
 	public function getPlayer($id) {
 		return $this->players[$id];
 	}
+
+	public function isRunning() {
+		return $this->running;
+	}
 }
 
-class Player implements jsonSerializable {
+class Player {
 	private $id;
 	private $name;
 	private $positions;
@@ -55,8 +78,8 @@ class Player implements jsonSerializable {
 		$this->ready = false;
 
 		// Generating random starting position
-		$x = rand(0, 1000);
-		$y = rand(0, 800);
+		$x = rand(0, 500);
+		$y = rand(0, 500);
 
 		// History of movements
 		$this->positions = array();
@@ -88,13 +111,26 @@ class Player implements jsonSerializable {
 	public function getY() {
 		return end($this->positions)[1];
 	}
+	// Returns player name
+	public function getName() {
+		return $this->name;
+	}
+	public function isReady() {
+		return $this->ready;
+	}
+	public function getData() {
+		$playerData = array();
+		$playerData["id"] = $this->id;
+		$playerData["name"] = $this->name;
+		$playerData["lastpos"] = array($this->getX(), $this->getY());
+		$playerData["ready"] = $this->ready;
+
+		return $playerData;
+	}
+
 	// Returns whole history of positions
 	public function getPositions() {
 		return $this->positions;
-	}
-
-	public function jsonSerialize() {
-		return get_object_vars($this);
 	}
 }
 ?>
