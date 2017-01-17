@@ -17,6 +17,7 @@
 					$_SESSION['firstname'] = $data['firstname'];
 					$_SESSION['lastname'] = $data['lastname'];
 					$_SESSION['key'] = $data['pk_user'];
+					$_SESSION["username"] = $data['username'];
 
 					echo("You are connected");
 					
