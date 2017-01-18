@@ -66,7 +66,7 @@
 		<div class="ui container">
 			<h1 class="ui blue header">Game rooms</h1>
 
-			<a href="http://localhost:8080/Zzznake/session-init.php" class="ui teal button">Join an empty room</a>
+			<a href="session-init.php" class="ui teal button">Join an empty room</a>
 
 		</div>
 
