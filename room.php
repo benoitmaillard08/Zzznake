@@ -6,7 +6,7 @@
 	    include('connect.php');
 	?>
 
-	<div class="ui container">
+	<div class="ui raised padded container segment">
 		<div class="ui three statistics">
 		  <div class="statistic">
 		    <div class="value">
@@ -54,27 +54,37 @@
 		</div>
 	</div>
 
+
 	<div class="ui container">
-		<?php 
-			echo('<p><h1 class="ui teal header">Hello, '.$_SESSION["username"].' ! </h1></p>');
-		 ?>
-		<form action="unlog.php" method="GET" class="ui form">
-			<button class="ui red button" type="submit">Logout</button>
-		</form>
+		<div class="ui inverted clearing segment">
+			<?php 
+				echo('<p><h1 class="ui white left floated header">Hello, '.$_SESSION["username"].' ! <i class="hand peace icon"></i></h1></p>');
+			 ?>
+
+			<form action="unlog.php" method="GET" class="ui form">
+				<button class="ui red right floated button" type="submit">Logout</button>
+			</form>
+		</div>
+	</div>
+	
+	<div class="ui container ">
+		<div class="ui clearing segment">
+
+				<h1 class="ui blue left aligned header">Game rooms</h1>
+		
+				<a href="session-init.php" class="ui teal button">Join an empty room</a>
+
+				<div class="ui clearing divider"></div>
+
+			<div class="ui container" id="container_id">
+
+			</div>
+		</div>
 	</div>
 
-		<div class="ui container">
-			<h1 class="ui blue header">Game rooms</h1>
-
-			<a href="session-init.php" class="ui teal button">Join an empty room</a>
-
-		</div>
-
-
-		<div class="ui container" id="container_id">
-
-		</div>
-
 	<script src="script.js"></script>
+	<?php 
+		include('footer.php');
+	 ?>
 </body>
 </html>

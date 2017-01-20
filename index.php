@@ -6,6 +6,14 @@
 	include('doctype.html');
 	include('connect.php');
 
+?>	
+	<div class="ui container">
+		<div class="ui inverted segment">
+			<h1 class="ui center aligned header">Welcome to Zzznake !</h1>
+		</div>
+	</div>
+	
+<?php
 	if (isset($_POST['username_login']) && isset($_POST['password_login'])){
 
 			$query_data = $bdd->query('SELECT * FROM user');
@@ -29,6 +37,7 @@
 	}else{		
 		include('login.php');
 	}
+	include('footer.php');
 
 ?>
 </body>

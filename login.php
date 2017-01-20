@@ -3,63 +3,67 @@
 
 	include('doctype.html');
  ?>
+<div class="ui raised padded text container segment">
+	<div class="ui two column middle aligned very relaxed stackable grid">
 
-<div class="ui container">
+		<div class="column">
+			<form action="index.php" method="POST" class="ui form">
+				<h1><i class="sign in green icon"></i> Sign in</h1>
 
-	<form action="index.php" method="POST" class="ui form">
-		<h1>Sign in</h1>
 
+						<div class="field">
+							<label>Username : </label>
+							<input type="text" name="username_login">
+						</div>
+					
+					<div class="field">
+						<label>Password :</label>
+						<input type="password" name="password_login">
+					</div>
 
-				<div class="six wide field">
-					<label>Username : </label>
-					<input type="text" name="username_login">
-				</div>
-			
-			<div class="six wide field">
-				<label>Password :</label>
-				<input type="password" name="password_login">
-			</div>
+				<button class="ui green button" type="submit">Login</button>
+			</form>
+		</div>
 
-		<button class="ui button" type="submit">Login</button>
-	</form>
+		<div class="ui vertical divider">
+	    	Or
+	  	</div>
 
-	</div>
-
-</div>
-
-	<div class="ui container">
-			<h1>Sign up</h1>
+		<div class="column">
+			<h1><i class="add blue user icon"></i> Sign up</h1>
 			
 			<form action="user_add.php" method="POST" class="ui form">
-				<div class="six wide field">
+				<div class="field">
 					<label>Lastname : </label>
 					<input type="text" name="lastname">
 				</div>
 
-				<div class="six wide field">
+				<div class="field">
 					<label>Firstname : </label>
 					<input type="text" name="firstname">
 				</div>
 
-				<div class="six wide field">
+				<div class="field">
 					<label>Email : </label>
 					<input type="email" name="email">
 				</div>
 
-				<div class="six wide field">
+				<div class="field">
 					<label>Username : </label>
 					<input type="text" name="username">
 				</div>
 
-				<div class="six wide field">
+				<div class="field">
 					<label>Password : </label>
 					<input type="password" name="password">
 				</div>
 				
 
-				<button class="ui button" type="submit">Register</button>
+				<button class="ui blue button" type="submit">Register</button>
 			</form>
+		</div>
 	</div>
+</div>
 
 </body>
 </html>

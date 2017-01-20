@@ -4,7 +4,7 @@
     $nbPlayers = $bdd->query('SELECT COUNT(*) FROM user WHERE user.fk_room IS NOT NULL')->fetchColumn();
 
 	if($nbPlayers === '0'){
-		echo('<img src="alone.jpg" alt="Forever alone">');
+		echo('<img src="alone.jpg" class="ui centered medium image" alt="Forever alone">');
 
 	}else{
 
