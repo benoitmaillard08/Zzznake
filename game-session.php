@@ -11,5 +11,6 @@
 <body>
     <p>Hello World ! This is session number <?php echo($_GET['id']) ?></p>
     <canvas id="canvas" width="1000" height="800" tabindex="1"></canvas>
+    <button id="ready">Ready</button>
 </body>
 </html>
