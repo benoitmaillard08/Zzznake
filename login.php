@@ -13,12 +13,18 @@
 
 						<div class="field">
 							<label>Username : </label>
-							<input type="text" name="username_login">
+							<div class="ui left icon input">
+								<input type="text" placeholder="Username" name="username_login">
+								<i class="user icon"></i>
+							</div>
 						</div>
 					
 					<div class="field">
 						<label>Password :</label>
-						<input type="password" name="password_login">
+						<div class="ui left icon input">
+							<input type="password" placeholder="Password" name="password_login">
+							<i class="lock icon"></i>
+						</div>
 					</div>
 
 				<button class="ui green button" type="submit">Login</button>
@@ -36,34 +42,34 @@
 				<div class="two fields">
 					<div class="field">
 						<label>Lastname : </label>
-						<input type="text" name="lastname">
+						<input type="text" placeholder="Lastname" name="lastname">
 					</div>
 
 					<div class="field">
 						<label>Firstname : </label>
-						<input type="text" name="firstname">
+						<input type="text" placeholder="Firstname" name="firstname">
 					</div>
 				</div>
 
 				<div class="field">
 					<label>Email : </label>
-					<input type="email" name="email">
+					<input type="email" placeholder="Email" name="email">
 				</div>
 
 				<div class="field">
 					<label>Username : </label>
-					<input type="text" name="username">
+					<input type="text" placeholder="Username" name="username">
 				</div>
 				
 				<div class="two fields">
 					<div class="field">
 						<label>Password : </label>
-						<input type="password" name="password1">
+						<input type="password" placeholder="Password" name="password1">
 					</div>
 
 					<div class="field">
 						<label>Confirm password : </label>
-						<input type="password" name="password2">
+						<input type="password" placeholder="Confirm password" name="password2">
 					</div>
 				</div>
 				
