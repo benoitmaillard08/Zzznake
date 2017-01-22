@@ -8,7 +8,7 @@
 
 	}else{
 
-		echo('<div id="rooms"><table class="ui celled striped table"><thead><tr><th>Game number</th><th>List of players waiting</th><th>Join</th></thead>');
+		echo('<div id="rooms"><table class="ui celled striped padded table"><thead><tr><th><h3 class="ui header">Game number</h3></th><th><h3 class="ui header">List of players waiting</h3></th><th><h3 class="ui header">Join</h3></th></thead>');
 		
 		$user_fk_room = $bdd->query('SELECT DISTINCT user.fk_room FROM user WHERE user.fk_room IS NOT NULL ');
 		$i = 1;
@@ -17,22 +17,24 @@
 			echo("<tr>");
 				echo("<td>".$i."</td>");
 				$i++;	//Game number
-					echo('<td><ol class="ui list">');	//list of the players waiting for a game in the specific room
+					echo('<td><ul class="ui list">');	//list of the players waiting for a game in the specific room
 
 					$user = $bdd->query('SELECT user.username FROM user WHERE user.fk_room ='.$fk_key['fk_room']);
 
 					foreach($user as $userName){
 						echo('<li>'.$userName['username'].'</li>');
 					}
-					echo('</ol></td>');
+					echo('</ul></td>');
 
 					//we check if the game is already launched
 					$playing = $bdd->query('SELECT room.playing FROM room WHERE room.pk_room ='.$fk_key['fk_room'])->fetchColumn();
 
-					if ($fk_key['fk_room'] === '0'){
-						echo('<td><form action="index.php?id='.$fk_key['fk_room'].'" method="GET" class="ui form"><button class="ui violet button" type="submit">Join Game</button></form></td>');
-					}else{
-						echo('<a class="ui red tag label">Playing</a>');
+					if ($playing == '0'){
+						echo('<td><form action="session-init.php?id='.$fk_key['fk_room'].'" method="GET" class="ui form"><button class="ui violet button" type="submit">Join Game &nbsp; <i class="game icon"></i></button></form></td>');
+					}else{		
+
+						echo('<td><a class="ui red tag label">Playing</a><td>');
+			
 					}
 					
 			
