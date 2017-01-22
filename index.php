@@ -17,6 +17,7 @@
 	if (isset($_POST['username_login']) && isset($_POST['password_login'])){
 
 			$query_data = $bdd->query('SELECT * FROM user');
+			$correct = 0;
 
 			foreach($query_data as $data){
 
@@ -28,9 +29,14 @@
 					$_SESSION["username"] = $data['username'];
 
 					echo("You are connected");
+					$correct = 1;
 					
+				}
+				if ($correct == 1){
 					header('Location: room.php');
-				}	
+				}else{
+					header('Location: index.php');
+				}
 			
 			}
 			
@@ -40,5 +46,6 @@
 	include('footer.php');
 
 ?>
+	<script src="validation.js"></script>
 </body>
 </html>

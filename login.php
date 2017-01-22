@@ -7,7 +7,7 @@
 	<div class="ui two column middle aligned very relaxed stackable grid">
 
 		<div class="column">
-			<form action="index.php" method="POST" class="ui form">
+			<form action="index.php" method="POST" class="ui form in">
 				<h1><i class="sign in green icon"></i> Sign in</h1>
 
 
@@ -32,15 +32,17 @@
 		<div class="column">
 			<h1><i class="add blue user icon"></i> Sign up</h1>
 			
-			<form action="user_add.php" method="POST" class="ui form">
-				<div class="field">
-					<label>Lastname : </label>
-					<input type="text" name="lastname">
-				</div>
+			<form action="user_add.php" method="POST" class="ui form up">
+				<div class="two fields">
+					<div class="field">
+						<label>Lastname : </label>
+						<input type="text" name="lastname">
+					</div>
 
-				<div class="field">
-					<label>Firstname : </label>
-					<input type="text" name="firstname">
+					<div class="field">
+						<label>Firstname : </label>
+						<input type="text" name="firstname">
+					</div>
 				</div>
 
 				<div class="field">
@@ -52,10 +54,17 @@
 					<label>Username : </label>
 					<input type="text" name="username">
 				</div>
+				
+				<div class="two fields">
+					<div class="field">
+						<label>Password : </label>
+						<input type="password" name="password1">
+					</div>
 
-				<div class="field">
-					<label>Password : </label>
-					<input type="password" name="password">
+					<div class="field">
+						<label>Confirm password : </label>
+						<input type="password" name="password2">
+					</div>
 				</div>
 				
 
