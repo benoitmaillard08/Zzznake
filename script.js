@@ -2,7 +2,7 @@ $(function(){
 	function update(){
 
 	$.ajax({
-		url: "http://localhost:8080/Zzznake/load_room.php",
+		url: "load_room.php",
 		dataType: "html",
 	}).done(function(result){
 
