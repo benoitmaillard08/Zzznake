@@ -31,10 +31,6 @@
 			</form>
 		</div>
 
-		<div class="ui vertical divider">
-	    	Or
-	  	</div>
-
 		<div class="column">
 			<h1><i class="add blue user icon"></i> Sign up</h1>
 			
