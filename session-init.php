@@ -9,7 +9,6 @@ $g = new Game(0, "game0");
 
 apcu_add("game0", $g);
 
-// saving game object in memory
-echo(json_encode($g->update()));
+header('Location: ' . 'game-session.php?id=0');
 
 ?>
