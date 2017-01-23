@@ -173,6 +173,11 @@ Game.prototype.launch = function() {
     }, 50);
 }
 
+// updateGUI ---------------------------------------------------------
+Game.prototype.updateGUI = function(response) {
+    // code here
+}
+
 // tic ---------------------------------------------------------------
 Game.prototype.tic = function() {
     if (this.running) {
@@ -229,6 +234,8 @@ Game.prototype.tic = function() {
             if (response.running) {
                 game.running = true;
             }
+
+            this.updateGUI(response);
         }
     });
 }
