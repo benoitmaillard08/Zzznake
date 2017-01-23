@@ -2,18 +2,27 @@
 
 include("Game.php");
 
-if (isset($_GET["name"])) {
-	$name = $_GET["name"];
+session_start();
+
+if (isset($_GET['id'])) {
+	$id = $_GET["id"];
 
 	// opening data stored in memory
-	$g = apcu_fetch("game0");
+	$key = 'session#' . $id;
+	$game = apcu_fetch($key);
+	echo("---");
+	echo(json_encode(apcu_fetch($key)->update()));
+	echo("---");
 
-	$player = $g->addPlayer($name);
+	$name = $_SESSION['username'];
+	$id = $_SESSION['key'];
 
-	echo(json_encode($player->getData()));
+	$player = $game->addPlayer($name, $id);
+
+	// echo(json_encode($player->getData()));
 
 	// saving modifications
-	apcu_store("game0", $g);
+	apcu_store($key, $game);
 }
 
 ?>

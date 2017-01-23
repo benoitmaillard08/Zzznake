@@ -4,6 +4,8 @@
 
 		include('doctype.html');
 	    include('connect.php');
+
+	    if (isset($_SESSION['key'])) {
 	?>
 
 	<div class="ui raised padded container segment">
@@ -61,9 +63,7 @@
 				echo('<p><h1 class="ui white left floated header">Hello, '.$_SESSION["username"].' ! <i class="hand peace icon"></i></h1></p>');
 			 ?>
 
-			<form action="unlog.php" method="GET" class="ui form">
-				<button class="ui red right floated button" type="submit">Logout</button>
-			</form>
+			<a href="unlog.php" class="ui red right floated button">Logout</a>
 		</div>
 	</div>
 	
@@ -83,8 +83,13 @@
 	</div>
 
 	<script src="script.js"></script>
-	<?php 
+	<?php
+}
+else {
+	echo("not logged in");
+}
 		include('footer.php');
+
 	 ?>
 </body>
 </html>

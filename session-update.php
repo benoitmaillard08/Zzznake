@@ -2,15 +2,27 @@
 
 include("Game.php");
 
+session_start();
+
 // opening data stored in memory
 if (isset($_GET["id"])) {
-	$idPlayer = $_GET["id"];
+	// Get id of player sending the request
+	$idPlayer = $_SESSION['key'];
+
+	// ID of game session
+	$sessionId = $_GET["id"];
 
 	// opening data stored in memory
-	$session = apcu_fetch("game0");
+	$key = 'session#' . $sessionId;
+	$session = apcu_fetch($key);
+
+	echo(json_encode($session->update()));
+
+
 
 	// player who made the request
 	$player = $session->getPlayer($idPlayer);
+	
 
 	// in case the game is running
 	if (isset($_GET["type"], $_GET["x"], $_GET["y"])) {
@@ -31,7 +43,7 @@ if (isset($_GET["id"])) {
 		}
 	}
 	// in case players are getting ready
-	else if (isset($_GET["ready"])) {
+	else if (isset($_GET["ready"]) && $player) {
 		if ($_GET["ready"] == "true") {
 			$player->ready();
 		}
@@ -39,10 +51,10 @@ if (isset($_GET["id"])) {
 
 	$data = $session->update();
 
-	echo(json_encode($data));
+	
 
 	// saving modifications
-	apcu_store("game0", $session);
+	apcu_store($key, $session);
 }
 
 ?>

@@ -70,7 +70,6 @@ Znake.prototype.move = function() {
 
     // Draw new segment
     drawLine(this.headX, this.headY, this.headX + moveX, this.headY + moveY);
-    console.log("local", this.headX, this.headY, this.headX + moveX, this.headY + moveY);
     // Increment position
     this.headX += moveX;
     this.headY += moveY;
@@ -91,7 +90,6 @@ DistantZnake.prototype.move = function() {
     // Increment position
     if (this.headX && this.newX) {
         drawLine(this.headX, this.headY, this.newX, this.newY);
-        console.log("distant", this.headX, this.headY, this.newX, this.newY);
     }
 
     // console.log("distant", this.headX, this.headY, this.newX, this.newY);
@@ -140,13 +138,21 @@ function Game() {
     this.mouseX = CWIDTH / 2 + 1;
     this.mouseY = CHEIGHT / 2 + 1;
 
+    // Finding "id" GET parameter
+    this.sessionId = window.location.search.split("id=")[1];
+
     this.joinSession();
 }
 Game.prototype.joinSession = function() {
     var game = this;
-    $.getJSON("session-join.php", {"name" : "michel"}, function(response) {
+
+    console.log(this.sessionId);
+    $.getJSON("session-join.php", {"id" : this.sessionId}, function(response) {
         console.log(response);
+
+        // this is the player ID in database; not ID of the session
         game.id = response.id;
+        console.log(game.id);
 
         game.addZnake(response.lastpos[0], response.lastpos[1], "yellow");
     })
@@ -182,16 +188,13 @@ Game.prototype.updateGUI = function(response) {
 Game.prototype.tic = function() {
     if (this.running) {
         this.znake.move();
-        console.log("test3");
         for (var z in this.distantZnakes) {
             this.distantZnakes[z].move();
             // console.log("test2");
         }
     }
 
-    console.log(this.running);
-
-    var params = {"id" : this.id};
+    var params = {"id" : this.sessionId};
     if (this.running) {
         params["x"] = this.znake.headX;
         params["y"] = this.znake.headY;
@@ -205,17 +208,9 @@ Game.prototype.tic = function() {
         for (var i = 0; i < response.players.length; i++) {
             var player = response.players[i];
 
-            console.log(response);
-
             // position given by the server
             var x = player.lastpos[0];
             var y = player.lastpos[1];
-
-            // console.log("####");
-            // console.log(player.name);
-            // console.log(x, y);
-
-            // console.log(game.distantZnakes);
 
             if (player.id == game.id) {
                 // console.log("this is the local player");
