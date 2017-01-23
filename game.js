@@ -25,7 +25,7 @@ function drawLine(x1, y1, x2, y2) {
     context.stroke();
     context.closePath();
 
-    // console.log(x1, y1, x2, y2);
+    console.log(x1, y1, x2, y2);
 }
 
 function distance(x1, y1, x2, y2) {
@@ -52,7 +52,7 @@ Znake.prototype.move = function() {
 
     // Handling canvas borders
     if (this.headX > CWIDTH) {
-        this.moveX = 0;
+        this.headX = 0;
     }
     else if (this.headX < 0) {
         this.headX = CWIDTH;
@@ -70,7 +70,7 @@ Znake.prototype.move = function() {
 
     // Draw new segment
     drawLine(this.headX, this.headY, this.headX + moveX, this.headY + moveY);
-    console.log("local", this.headX, this.headY, this.headX + moveX, this.headY + moveY);
+
     // Increment position
     this.headX += moveX;
     this.headY += moveY;
@@ -91,15 +91,12 @@ DistantZnake.prototype.move = function() {
     // Increment position
     if (this.headX && this.newX) {
         drawLine(this.headX, this.headY, this.newX, this.newY);
-        console.log("distant", this.headX, this.headY, this.newX, this.newY);
     }
-
-    // console.log("distant", this.headX, this.headY, this.newX, this.newY);
 
     this.headX = this.newX;
     this.headY = this.newY;
 
-    // console.log("test");
+    console.log("test");
 }
 
 // Game ##############################################################
@@ -147,7 +144,6 @@ Game.prototype.joinSession = function() {
     $.getJSON("session-join.php", {"name" : "michel"}, function(response) {
         console.log(response);
         game.id = response.id;
-
         game.addZnake(response.lastpos[0], response.lastpos[1], "yellow");
     })
 }
@@ -180,7 +176,7 @@ Game.prototype.tic = function() {
         console.log("test3");
         for (var z in this.distantZnakes) {
             this.distantZnakes[z].move();
-            // console.log("test2");
+            console.log("test2");
         }
     }
 
@@ -200,30 +196,28 @@ Game.prototype.tic = function() {
         for (var i = 0; i < response.players.length; i++) {
             var player = response.players[i];
 
-            console.log(response);
-
             // position given by the server
             var x = player.lastpos[0];
             var y = player.lastpos[1];
 
-            // console.log("####");
-            // console.log(player.name);
-            // console.log(x, y);
+            console.log("####");
+            console.log(player.name);
+            console.log(x, y);
 
-            // console.log(game.distantZnakes);
+            console.log(game.distantZnakes);
 
             if (player.id == game.id) {
-                // console.log("this is the local player");
+                console.log("this is the local player");
             }
             // in case the snake doesn't exist yet
             else if (game.distantZnakes[player.id] == undefined) {
                 game.addDistantZnake(player.id, x, y, "blue");
-                // console.log("new player added !");
+                console.log("new player added !");
             }
             // in case it already exists
             else {
                 game.distantZnakes[player.id].setPos(x, y);
-                // console.log("this is a distant player");
+                console.log("this is a distant player");
             }
 
             if (response.running) {
