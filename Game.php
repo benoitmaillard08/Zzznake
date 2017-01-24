@@ -3,25 +3,23 @@ class Game {
 	private $id;
 	private $name;
 	private $players;
-	private $nextId;
 	private $running;
 
 	public function __construct($id, $name) {
 		$this->id = $id;
 		$this->name = $name;
-		$this->nextId = 0;
 		$this->running = false;
 
 		$this->players = array();
 	}
 	// Allow to add a player in game session
-	public function addPlayer($name) {
-		$player = new Player($this->nextId, $name);
+	public function addPlayer($name, $id_db) {
+		$player = new Player($id_db, $name);
 
 		// adding player at key "id"
-		$this->players[$this->nextId] = $player;
+		$this->players[$id_db] = $player;
 
-		$this->nextId ++;
+		var_dump($this->players);
 
 		return $player;
 	}
@@ -34,7 +32,7 @@ class Game {
 		$readyFlag = true;
 
 		foreach ($this->players as $id => $p) {
-			array_push($players, $p->getData());
+			$players[$id] = $p->getData();
 
 			if (!$p->isReady()) {
 				$readyFlag = false;

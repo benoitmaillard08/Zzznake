@@ -2,13 +2,33 @@
 
 include("Game.php");
 
+
+
 // clearing cache
-apcu_clear_cache();
+$sessions = apcu_fetch("sessions");
 
-$g = new Game(0, "game0");
+if ($sessions) {
+	// next id -> last id + 1
+	$new_id = $sessions[count($sessions) - 1] + 1;
+}
+else {
+	// in case there is no other current sessions, next id is 0
+	$sessions = array();
+	apcu_add("sessions", $sessions);
+	$new_id = 0;
+}
+array_push($sessions, $new_id);
+apcu_store("sessions", $sessions);
 
-apcu_add("game0", $g);
+$game_session = new Game($new_id, 'game#' . $new_id);
 
-header('Location: ' . 'game-session.php?id=0');
+// new session is stores at key "game-id" in apcu cache
+
+$key = 'session#' . $new_id;
+
+apcu_add($key, $game_session);
+echo(json_encode(apcu_fetch($key)->update()));
+
+header('Location: ' . 'game-session.php?id=' . $new_id);
 
 ?>
