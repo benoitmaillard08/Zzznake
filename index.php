@@ -44,6 +44,6 @@
 	include('footer.php');
 
 ?>
-	<script src="validation.js"></script>
+	<script src="static/js/validation.js"></script>
 </body>
 </html>

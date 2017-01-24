@@ -22,7 +22,10 @@
 				<div class="column">
 					<div class="right floated content">
 						<h2 class="ui header">Michel &nbsp;
-						<a class="ui green tag label">Ready</a></h2>
+						<div class="ui slider checkbox">
+						  <input name="newsletter" type="checkbox">
+						  <label>Click when you are ready</label>
+						</div></h2>
 					</div>	
 				</div>
 			</div>

@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="custom.css">
+    <link rel="stylesheet" type="text/css" href="static/css/custom.css">
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">	
     </script>

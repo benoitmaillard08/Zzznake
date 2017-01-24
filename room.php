@@ -82,7 +82,7 @@
 		</div>
 	</div>
 
-	<script src="script.js"></script>
+	<script src="static/js/script.js"></script>
 	<?php
 }
 else {
