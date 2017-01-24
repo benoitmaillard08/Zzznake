@@ -43,6 +43,7 @@ function Znake(startX, startY, color, parent) {
 // move --------------------------------------------------------------
 Znake.prototype.move = function() {
     // Change angle
+    console.log(this.angle);
     if (this.parent.arrowRight) {
         this.angle += Math.PI / 20;
     }
@@ -51,17 +52,11 @@ Znake.prototype.move = function() {
     }
 
     // Handling canvas borders
-    if (this.headX > CWIDTH) {
-        this.moveX = 0;
+    if (this.headX > CWIDTH || this.headX < 0) {
+        this.angle = Math.PI - this.angle;
     }
-    else if (this.headX < 0) {
-        this.headX = CWIDTH;
-    }
-    if (this.headY > CHEIGHT) {
-        this.headY = 0;
-    }
-    else if (this.headY < 0) {
-        this.headY = CHEIGHT; 
+    else if (this.headY > CHEIGHT || this.headY < 0) {
+        this.angle = 0 - this.angle;
     }
 
     // Calculate movement vector
