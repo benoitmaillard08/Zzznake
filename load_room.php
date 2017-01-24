@@ -30,7 +30,7 @@
 					$playing = $bdd->query('SELECT room.playing FROM room WHERE room.pk_room ='.$fk_key['fk_room'])->fetchColumn();
 
 					if ($playing == '0'){
-						echo('<td><a href="session-init.php?id='.$fk_key['fk_room'].'" class="ui violet button">Join Game &nbsp; <i class="game icon"></i></a></td>');
+						echo('<td><a href="game-session.php?id='.$fk_key['fk_room'].'" class="ui violet button">Join Game &nbsp; <i class="game icon"></i></a></td>');
 					}else{		
 
 						echo('<td><a class="ui red tag label">Playing</a><td>');
