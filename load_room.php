@@ -17,7 +17,7 @@
 			echo("<tr>");
 				echo("<td>".$i."</td>");
 				$i++;	//Game number
-					echo('<td><ul class="ui list">');	//list of the players waiting for a game in the specific room
+					echo('<td><ul class="ui list">');	//list of the players in the specific room
 
 					$user = $bdd->query('SELECT user.username FROM user WHERE user.fk_room ='.$fk_key['fk_room']);
 

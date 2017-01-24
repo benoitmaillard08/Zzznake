@@ -23,9 +23,10 @@
 					<div class="right floated content">
 						<h2 class="ui header">Michel &nbsp;
 						<div class="ui slider checkbox">
-						  <input name="newsletter" type="checkbox">
+						  <input name="ready" type="checkbox">
 						  <label>Click when you are ready</label>
-						</div></h2>
+						</div>
+						</h2>
 					</div>	
 				</div>
 			</div>

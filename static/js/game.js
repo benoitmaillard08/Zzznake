@@ -178,14 +178,11 @@ Game.prototype.launch = function() {
 Game.prototype.updateGUI = function(response) {
     // code here
 
-    var nbPlayersWaiting = response.players.length;
-
-    if (nbPlayersWaiting > 0){
 
         var $container = $('<div class="ui raised padded container segment">');
         var $textContainer = $('<div class="ui text container">'); 
 
-            for (var i = 0; i < nbPlayersWaiting; i++){
+            for (var i in response.players){
                 var $columnGrid = $('<div class="ui one column grid">');
                 var $column = $('<div class="column">');  
                 var $content = $('<div class="right floated content">');
@@ -213,34 +210,7 @@ Game.prototype.updateGUI = function(response) {
         $container.append('</div>');
 
         $('#game_id').html($container);
-    }
-    
-    /*
-{  
-   "name":"game0",
-   "running":true,
-   "players":[  
-      {  
-         "id":0,
-         "name":"michel",
-         "lastpos":[  
-            2411,
-            506
-         ],
-         "ready":true
-      },
-      {  
-         "id":1,
-         "name":"jean-michel2",
-         "lastpos":[  
-            500,
-            497
-         ],
-         "ready":false
-      }
-   ]
-}
-    */
+
 }
 
 // tic ---------------------------------------------------------------
