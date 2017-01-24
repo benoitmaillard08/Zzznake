@@ -19,8 +19,6 @@ class Game {
 		// adding player at key "id"
 		$this->players[$id_db] = $player;
 
-		var_dump($this->players);
-
 		return $player;
 	}
 

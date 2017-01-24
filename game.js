@@ -25,7 +25,6 @@ function drawLine(x1, y1, x2, y2) {
     context.stroke();
     context.closePath();
 
-    console.log(x1, y1, x2, y2);
 }
 
 function distance(x1, y1, x2, y2) {
@@ -96,7 +95,14 @@ DistantZnake.prototype.move = function() {
     this.headX = this.newX;
     this.headY = this.newY;
 
-    console.log("test");
+}DistantZnake.prototype.move = function() {
+    // Increment position
+    if (this.headX && this.newX) {
+        drawLine(this.headX, this.headY, this.newX, this.newY);
+    }
+
+    this.headX = this.newX;
+    this.headY = this.newY;
 }
 
 // Game ##############################################################
@@ -137,13 +143,19 @@ function Game() {
     this.mouseX = CWIDTH / 2 + 1;
     this.mouseY = CHEIGHT / 2 + 1;
 
+    // ID of player in the game
+    this.playerID = "";
+
+    // get ID of session in URL
+    this.sessionID = window.location.search.split("id=")[1];
+
     this.joinSession();
 }
 Game.prototype.joinSession = function() {
     var game = this;
-    $.getJSON("session-join.php", {"name" : "michel"}, function(response) {
+    $.getJSON("session-join.php", {"id" : game.sessionID}, function(response) {
         console.log(response);
-        game.id = response.id;
+        game.playerID = response.id;
         game.addZnake(response.lastpos[0], response.lastpos[1], "yellow");
     })
 }
@@ -171,18 +183,20 @@ Game.prototype.launch = function() {
 
 // tic ---------------------------------------------------------------
 Game.prototype.tic = function() {
+    console.log(this.running);
     if (this.running) {
+        console.log("running");
         this.znake.move();
-        console.log("test3");
+    
         for (var z in this.distantZnakes) {
             this.distantZnakes[z].move();
-            console.log("test2");
+            
         }
     }
 
-    console.log(this.running);
+    
 
-    var params = {"id" : this.id};
+    var params = {"id" : this.sessionID};
     if (this.running) {
         params["x"] = this.znake.headX;
         params["y"] = this.znake.headY;
@@ -193,21 +207,20 @@ Game.prototype.tic = function() {
     }
     var game = this;
     $.getJSON("session-update.php", params, function(response) {
-        for (var i = 0; i < response.players.length; i++) {
-            var player = response.players[i];
+        console.log(response);
+        for (var id in response.players) {
+
+            var player = response.players[id];
+            console.log(player);
 
             // position given by the server
             var x = player.lastpos[0];
             var y = player.lastpos[1];
 
-            console.log("####");
-            console.log(player.name);
-            console.log(x, y);
+            
 
-            console.log(game.distantZnakes);
+            if (player.id == game.playerID) {
 
-            if (player.id == game.id) {
-                console.log("this is the local player");
             }
             // in case the snake doesn't exist yet
             else if (game.distantZnakes[player.id] == undefined) {
@@ -217,7 +230,7 @@ Game.prototype.tic = function() {
             // in case it already exists
             else {
                 game.distantZnakes[player.id].setPos(x, y);
-                console.log("this is a distant player");
+                
             }
 
             if (response.running) {

@@ -28,8 +28,8 @@ if (isset($_GET["id"])) {
 	if (isset($_GET["type"], $_GET["x"], $_GET["y"])) {
 		if ($session->isRunning()) {
 			$type = $_GET["type"];
-			$posX = intval($_GET["x"]);
-			$posY = intval($_GET["y"]);
+			$posX = floatval($_GET["x"]);
+			$posY = floatval($_GET["y"]);
 
 			if ($type == "edit") {
 				$player->editPoint($posX, $posY);

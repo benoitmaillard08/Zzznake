@@ -151,8 +151,8 @@ Game.prototype.joinSession = function() {
         console.log(response);
 
         // this is the player ID in database; not ID of the session
-        game.id = response.id;
-        console.log(game.id);
+        game.playerID = response.id;
+        console.log(game.playerID);
 
         game.addZnake(response.lastpos[0], response.lastpos[1], "yellow");
     })
@@ -204,15 +204,17 @@ Game.prototype.tic = function() {
         params["ready"] = this.ready;
     }
     var game = this;
+    console.log("tic");
     $.getJSON("session-update.php", params, function(response) {
-        for (var i = 0; i < response.players.length; i++) {
-            var player = response.players[i];
+        console.log(response);
+        for (var id in response.players) {
+            var player = response.players[id];
 
             // position given by the server
             var x = player.lastpos[0];
             var y = player.lastpos[1];
 
-            if (player.id == game.id) {
+            if (player.id == game.playerID) {
                 // console.log("this is the local player");
             }
             // in case the snake doesn't exist yet
@@ -230,7 +232,7 @@ Game.prototype.tic = function() {
                 game.running = true;
             }
 
-            this.updateGUI(response);
+            game.updateGUI(response);
         }
     });
 }
