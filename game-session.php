@@ -31,7 +31,7 @@
     if (true){
     ?>
    	<div class="ui container">
-   		<div class="ui clearing segment">
+   		<div class="ui clearing inverted segment">
    			<style type="text/css">
 			canvas {
 				background-color: gold;
@@ -45,7 +45,7 @@
 			}
 			</style>
    			<canvas id="canvas" width="520" height="520" tabindex="1"></canvas>
-   			<button class="ui inverted green big button" id="ready">Ready</button>
+   			<button class="ui inverted green large button" id="ready">Ready</button>
    		</div>
     	
     </div>

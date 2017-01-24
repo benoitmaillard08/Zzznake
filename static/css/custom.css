@@ -8,3 +8,16 @@
 [disabled] {
 	color: red;
 }
+
+div.ui.clearing.segment{
+	margin-top: 10px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+button#ready{
+	margin-left: 9%;
+	margin-bottom: 5px;
+	position: absolute;
+	top: 30px;
+}
