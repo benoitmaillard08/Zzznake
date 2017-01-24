@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-    include('connect.php');
+  include('connect.php');
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +22,10 @@
 </head>
 <body>
     <p>Hello World ! This is session number <?php echo($_GET['id']) ?></p>
+    
+    <div class="ui game" id="game_id">
+
+    </div>
 
     <?php  
 
@@ -49,9 +53,7 @@
     <?php
     }else{
     	?>
-    	<div class="ui game" id="game_id">
-
-		</div>
+    
 		
 		<?php
     }
