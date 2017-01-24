@@ -13,7 +13,7 @@
 	$pk_user += 1;
 
 	$req = $bdd->prepare('INSERT INTO user VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)');
-	//On insére les valeurs dans la base de donnée
+	//On insüre les valeurs dans la base de donnée
 	$req->execute(array($pk_user, $_POST['lastname'], $_POST['firstname'], $_POST['email'], $_POST['username'], $_POST['password'], 0, 0, NULL)) or die(print_r($req->errorInfo(), true));
 	
 	header('Location: index.php'); 
