@@ -91,7 +91,6 @@ DistantZnake.prototype.move = function() {
 
     this.headX = this.newX;
     this.headY = this.newY;
-
     // console.log("test");
 }
 
@@ -177,10 +176,11 @@ Game.prototype.launch = function() {
 // updateGUI ---------------------------------------------------------
 Game.prototype.updateGUI = function(response) {
     // code here
+        $('#game_id').html('');
 
-
-        var $container = $('<div class="ui raised padded container segment">');
-        var $textContainer = $('<div class="ui text container">'); 
+        var $container = $('<div class="ui raised padded container inverted segment">');
+        var $textContainer = $('<div class="ui text container">');
+        $textContainer.append('<h1 class="ui white inverted centered header">List of players in this room</h1>');
 
             for (var i in response.players){
                 var $columnGrid = $('<div class="ui one column grid">');
@@ -188,9 +188,9 @@ Game.prototype.updateGUI = function(response) {
                 var $content = $('<div class="right floated content">');
 
                 if (response.players[i].ready){
-                    var $status = $('<h2 class="ui header">' + response.players[i].name +' &nbsp; <a class="ui green tag label">Ready</a></h2>');
+                    var $status = $('<button class="ui inverted blue large button">' + response.players[i].name +'</button><a class="ui green tag large label">Ready</a>');
                 }else{
-                    var $status = $('<h2 class="ui header">' + response.players[i].name +' &nbsp; <a class="ui red tag label">Not ready</a></h2>');
+                    var $status = $('<button class="ui inverted blue large button" disabled>' + response.players[i].name +'</button><a class="ui red tag large label">Not ready</a>');
                 }
             $content.append($status);
             $content.append('</div>');

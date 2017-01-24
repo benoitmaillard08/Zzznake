@@ -4,3 +4,7 @@
  	width: 100%;
  	text-align: right;
  }
+
+[disabled] {
+	color: red;
+}

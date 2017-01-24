@@ -21,7 +21,6 @@
     <title>Session #<?php echo($_GET['id']) ?></title>
 </head>
 <body>
-    <p>Hello World ! This is session number <?php echo($_GET['id']) ?></p>
     
     <div class="ui game" id="game_id">
 
@@ -46,7 +45,7 @@
 			}
 			</style>
    			<canvas id="canvas" width="520" height="520" tabindex="1"></canvas>
-   			<button id="ready">Ready</button>
+   			<button class="ui inverted green big button" id="ready">Ready</button>
    		</div>
     	
     </div>
