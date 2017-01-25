@@ -28,8 +28,9 @@
 
 					//we check if the game is already launched
 					$playing = $bdd->query('SELECT room.playing FROM room WHERE room.pk_room ='.$fk_key['fk_room'])->fetchColumn();
+					$nbPlayersInRoom = $bdd->query('SELECT COUNT(*) FROM user WHERE user.fk_room ='.$fk_key['fk_room'])->fetchColumn();
 
-					if ($playing == '0'){
+					if ($playing == '0' && $nbPlayersInRoom <= 4){
 						echo('<td><a href="game-session.php?id='.$fk_key['fk_room'].'" class="ui violet button">Join Game &nbsp; <i class="game icon"></i></a></td>');
 					}else{		
 
