@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `Zzznake`
 --
+CREATE DATABASE Zzznake;
+USE Zzznake;
 
 -- --------------------------------------------------------
 
