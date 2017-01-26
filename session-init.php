@@ -1,6 +1,5 @@
 <?php 
 
-include('connect.php');
 include("Game.php");
 
 // clearing cache
@@ -30,11 +29,6 @@ $key = 'session#' . $new_id;
 apcu_add($key, $game_session);
 echo(json_encode(apcu_fetch($key)->update()));
 
-$query = $bdd->prepare('INSERT INTO room (pk_room, playing) VALUES (:pk_room, :playing)');
-$query->execute(array(
-	'pk_room' => $new_id,
-	'playing' => 0
-));
 
 header('Location: ' . 'game-session.php?id=' . $new_id);
 

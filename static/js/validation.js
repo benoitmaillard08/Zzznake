@@ -34,8 +34,8 @@ $('.ui.form.up')
         identifier  : 'username',
         rules: [
           {
-            type   : 'regExp[/^[a-z0-9_-]{4,16}$/]',
-            prompt : 'Please enter a 4-16 letter username'
+            type   : 'regExp[/^[a-z0-9_-]{4,14}$/]',
+            prompt : 'Please enter a 4-14 letter username'
           }
         ]
       },

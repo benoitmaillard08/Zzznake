@@ -21,3 +21,8 @@ button#ready{
 	position: absolute;
 	top: 30px;
 }
+
+.ui.statistic > .value{
+	font-size: 2rem !important;
+}
+

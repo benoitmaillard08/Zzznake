@@ -9,9 +9,9 @@
 	?>
 
 	<div class="ui raised padded container segment">
-		<div class="ui three statistics">
+		<div class="ui four statistics">
 		  <div class="statistic">
-		    <div class="value">
+		    <div class="value" style="font-size: 2rem !important">
 		      <?php 
 		      	$n_victory = $bdd->query('SELECT user.n_victory FROM user WHERE user.username ='.$_SESSION["username"]);
 		      	$n_lost = $bdd->query('SELECT user.n_lost FROM user WHERE user.username ='.$_SESSION["username"]);
@@ -31,8 +31,9 @@
 		      Ratio
 		    </div>
 		  </div>
+
 		  <div class="statistic">
-		    <div class="value">
+		    <div class="value" style="font-size: 2rem !important">
 		      <?php 
 		      	echo($total);
 		       ?>
@@ -41,8 +42,9 @@
 		      Total games played
 		    </div>
 		  </div>
+
 		  <div class="statistic">
-		    <div class="value">
+		    <div class="value" style="font-size: 2rem !important">
 		      <?php 
 				$n_user = $bdd->query('SELECT COUNT(*) FROM user')->fetchColumn();
 				echo($n_user);
@@ -50,6 +52,30 @@
 		    </div>
 		    <div class="label">
 		      Number of users
+		    </div>
+		  </div>
+
+		  <div class="statistic">
+		    <div class="value" style="font-size: 2rem !important">
+		      <?php 
+
+				$user_score = $bdd->query('SELECT * FROM user WHERE user.n_victory > 0 AND user.n_lost > 0');
+				$max = 0;
+				$nom = "Chuck Norris";
+
+				foreach($user_score as $score){	
+					$ratio = $score['n_victory'] / $score['n_lost'];
+
+		       		if ($ratio >= $max){
+		       			$max = $ratio;
+		       			$nom = $score['username'];
+		       		}
+				}
+				echo($nom);
+		       ?>
+		    </div>
+		    <div class="label">
+		      Best player
 		    </div>
 		  </div>
 
