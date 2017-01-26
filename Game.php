@@ -22,6 +22,35 @@ class Game {
 		return $player;
 	}
 
+	public function checkPlayer($idPlayer) {
+		$requestingPlayer = $this->getPlayer($idPlayer);
+
+		$posX = $requestingPlayer->getX();
+		$posY = $requestingPlayer->getY();
+
+		foreach ($this->players as $id => $p) {
+			// only other players positions are checked
+			echo(json_encode($p->getPositions()));
+			echo("\n");
+			echo($posX . " " . $posY);
+			echo("\n");
+			$positions = $p->getPositions();
+			$length = count($positions);
+			$i = 0;
+			echo("l---".$length."--");
+			
+			while ($i < $length - 3) {
+				$distance = ((posX - positions[i][0])**2 + (posY - positions[i][1])**2)**0.5;
+
+				if ($distance < 2.5) {
+					echo($distance);
+					return True;
+				}
+			}
+		}
+		return False;
+	}
+
 	// Returns data about session and player positions
 	public function update() {
 		// array containing players data
