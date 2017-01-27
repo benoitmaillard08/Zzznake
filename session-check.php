@@ -13,9 +13,7 @@ if (isset($_GET['id'])) {
 	$key = 'session#' . $session_id;
 	$session = apcu_fetch($key);
 
-	var_dump($session->checkPlayer($player_id));
-
-	// echo(json_encode($player->getData()));
+	echo(json_encode(array("collision" => $session->checkPlayer($player_id))));
 
 	// saving modifications
 	apcu_store($key, $session);

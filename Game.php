@@ -29,21 +29,13 @@ class Game {
 		$posY = $requestingPlayer->getY();
 
 		foreach ($this->players as $id => $p) {
-			// only other players positions are checked
-			echo(json_encode($p->getPositions()));
-			echo("\n");
-			echo($posX . " " . $posY);
-			echo("\n");
 			$positions = $p->getPositions();
 			$length = count($positions);
-			
-			echo("$length\n");
 			
 			for ($i = 0; $i < $length - 3; $i++) {
 				$distance = (($posX - $positions[$i][0])**2 + ($posY - $positions[$i][1])**2)**0.5;
 
 				if ($distance < 5) {
-					echo("$distance\n");
 					return True;
 				}
 			}
