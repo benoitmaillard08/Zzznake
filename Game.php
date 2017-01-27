@@ -36,14 +36,14 @@ class Game {
 			echo("\n");
 			$positions = $p->getPositions();
 			$length = count($positions);
-			$i = 0;
-			echo("l---".$length."--");
 			
-			while ($i < $length - 3) {
-				$distance = ((posX - positions[i][0])**2 + (posY - positions[i][1])**2)**0.5;
+			echo("$length\n");
+			
+			for ($i = 0; $i < $length - 3; $i++) {
+				$distance = (($posX - $positions[$i][0])**2 + ($posY - $positions[$i][1])**2)**0.5;
 
-				if ($distance < 2.5) {
-					echo($distance);
+				if ($distance < 5) {
+					echo("$distance\n");
 					return True;
 				}
 			}
